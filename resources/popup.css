@@ -1,0 +1,13 @@
+div.content {
+	min-width: 250px;
+	min-height: 250px;
+	padding: 0.5em;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}

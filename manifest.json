@@ -1,0 +1,28 @@
+{
+	"manifest_version" : 2,
+	"name":"MockitMan",
+	"description":"Mocking tools for Swagger.",
+	"version":"0.0.1",
+	"background": { 
+		"scripts":["services/background.js"]
+	},
+    "icons": {
+	  "128": "resources/bc-logo-128.png",
+	  "48": "resources/bc-logo-48.png",
+	  "32": "resources/bc-logo-32.png",
+	  "16": "resources/bc-logo-16.png"
+    },
+	//"content_scripts": [{
+	//	"matches": ["http://*/*", "https://*/*"],
+	//	"css": [],
+	//	"js": []
+	//}],
+	//"web_accessible_resources": [
+		
+	//],
+	"browser_action" :{
+		"default_popup":"views/popup.html",
+		"default_icon":"resources/logo.png"
+	},
+	"permissions":["tabs", "http://*/*", "https://*/*"]
+}
