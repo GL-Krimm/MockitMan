@@ -5,44 +5,67 @@
 		<link href='../resources/popup.css' media='screen' rel='stylesheet' />
 	</head>
 	<body>
-		<div class="content">
-			<div id="guid">
+		<div id="content" class="content">
+			<div class="property" id="guid">
 				<span>GUID: </span>
 				<br>
-				<span id="guidValue"></span>
+				<span class="value" id="guidValue"></span>
 			</div>
 			<br>
-			<div id="num">
+			<div class="property" id="num">
 				<span>Number: </span>
 				<br>
-				<span id="numValue"></span>
+				<span class="value" id="numValue"></span>
 			</div>
 			<br>
-			<div id="name">
+			<div class="property" id="name">
 				<span>Name: </span>
 				<br>
-				<span id="nameValue"></span>
+				<span class="value" id="nameValue"></span>
 			</div>		
 			<br>
-			<div id="addr">
+			<div class="property" id="addr">
 				<span>Address: </span>
 				<br>
-				<span id="addrValue"></span>
+				<span class="value" id="addrValue"></span>
 			</div>		
 			<br>	
-			<div id="zip">
+			<div class="property" id="zip">
 				<span>ZIP: </span>
 				<br>
-				<span id="zipValue"></span>
+				<span class="value" id="zipValue"></span>
 			</div>	
 			<br>		
-			<div id="amt">
+			<div class="property" id="amt">
 				<span>Amount: </span>
 				<br>
-				<span id="amtValue"></span>
+				<span class="value" id="amtValue"></span>
 			</div>
-			<input id="btnOut" type="button" class="left" value="Out!"/>	
-			<input id="btnGenerate" type="button" class="right" value="New!"/>							
+			<br>
+			<div class="property" id="vin">
+				<span>VIN: </span>
+				<br>
+				<span class="value" id="vinValue"></span>
+			</div>	
+			<br>		
+			<div class="property" id="date" >
+				<span>Date: </span>
+				<br>
+				<span class="value" id="dateValue" ></span>
+			</div>
+			<br>
+			<div>
+				<span>Date format: </span>
+				<br>
+				<input id="formatField" type="text" value="yyyy-mm-ddThh:MM:ss" />
+			</div>
+			<div class="controlPanel">
+				<input id="btnOut" type="button" class="left" value="Out!"/>	
+				<input id="btnGenerate" type="button" class="right" value="New!"/>
+			</div>	
+			<div>
+				<input id="copyTarget" type="textbox" />
+			</div>						
 		</div>	
 		<script type="text/javascript" src="../lib/names.json"></script>
 		<script type="text/javascript" src="../lib/randoms.js"></script>

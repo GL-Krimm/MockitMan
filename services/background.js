@@ -3,10 +3,13 @@ var randomVinUrl = 'http://randomvin.com/getvin.php?fake=true';
 var BackgroundService = {
 
 	openWindow : function () {
+		if (windowDetached) {
+			return;
+		}
  		try {
  			console.log("trying...");
  			windowDetached = true;
- 			chrome.windows.create({'url':'../views/popup.html', 'type':'panel', 'height':280, 'width':280});
+ 			chrome.windows.create({'url':'../views/popup.html', 'type':'panel', 'height':450, 'width':280});
  		} catch ( e ) {
  			console.log(e.message);
  		}		
@@ -17,6 +20,10 @@ var BackgroundService = {
  	},
  	getWindowDetached : function() {
  		return windowDetached;
+ 	},
+
+ 	log: function(msg) {
+ 		console.log(msg);
  	}
  };
 

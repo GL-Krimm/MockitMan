@@ -1,33 +1,31 @@
-/*
-	window.create = {
-		guid: generateGuid,
-		randomId: RID,
-		name: fullName,
-		loanAmount: amount,
-		address: addr,
-		zip: zipCode,
-		loan: mockLoan
-	};
-	loan:
-	loanId: RID(),
-	firstName: name[0],
-	lastName: name[1],
-	amount: amount(),
-	address: addr(),
-	zip: zipCode()	
-*/
-
 (function() {
 	backgroundService = chrome.extension.getBackgroundPage().BackgroundService;
 
+	var contentId = "content";
 	var gId = "guidValue";
 	var nId = "numValue";
 	var naId = "nameValue";
 	var addrId = "addrValue";
 	var zId = "zipValue";
 	var amtId = "amtValue";
+	var vId = "vinValue";
 	var gBtnId = "btnGenerate";
 	var oBtnId = "btnOut";
+	var dateId = "dateValue";
+	var formatField = document.getElementById("formatField");
+	var titleMessage = "Click to copy to clipboard";
+	var copyTarget = null;
+
+	var formatDate = function(d, f) {
+		f = f.replace("yyyy", d.getFullYear());
+		var mo = ('0' + (d.getMonth() + 1)).slice(-2);
+		f = f.replace("mm", mo.toString());
+
+		var day = ('0' + d.getDate()).slice(-2);
+		f = f.replace("dd", day.toString());
+		f = f.replace("hh", "00").replace("MM", "00").replace("ss", "00");
+		return f;
+	}
 
 	var generateNewData = function() {
 		var loanInfo = window.create.loan();
@@ -49,6 +47,37 @@
 
 		node = document.getElementById(amtId);
 		node.textContent = loanInfo.amount;		
+
+		node = document.getElementById(vId);
+		node.textContent = loanInfo.vin;
+
+		node = document.getElementById(dateId);
+		node.textContent = formatDate(new Date(), formatField.value); //new Date().toString();
+	}
+
+	var copyData = function(elem) {
+		if (elem) {
+			backgroundService.log(copyTarget);
+			copyTarget.value = elem.textContent;
+			copyTarget.select();
+			document.execCommand('copy', true);
+		} else {
+			backgroundService.log('blankety blank');
+		}
+	}
+
+	var handleClick = function() {
+		var valNode = this.querySelector('.value');
+		copyData(valNode);
+	}
+
+	var initClickHandlers = function() {
+		var nodes = document.getElementsByClassName('property');
+
+		for (var i = 0; i < nodes.length; ++i) {
+			nodes[i].onclick = handleClick;
+			nodes[i].title = titleMessage;
+		}
 	}
 
 	var init = function() {
@@ -59,9 +88,15 @@
 
 		var oBtn = document.getElementById(oBtnId);
 		oBtn.onclick = function() {
-			console.log("opening!");
 			backgroundService.openWindow();
 		}
+
+		window.onbeforeunload = function() {
+			backgroundService.setWindowDetached(false);
+		}
+
+		copyTarget = document.getElementById('copyTarget');
+		initClickHandlers();
 	}
 
 	init();

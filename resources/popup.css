@@ -1,6 +1,6 @@
 div.content {
 	min-width: 250px;
-	min-height: 250px;
+	min-height: 300px;
 	padding: 0.5em;
 }
 
@@ -10,4 +10,17 @@ div.content {
 
 .left {
 	float: left;
+}
+
+.controlPanel {
+	padding: 0.5em;
+}
+
+div.property {
+	cursor: pointer;
+}
+
+input#copyTarget {
+	position: fixed;
+	top: 10000px;
 }
