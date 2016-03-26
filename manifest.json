@@ -7,10 +7,10 @@
 		"scripts":["services/background.js"]
 	},
     "icons": {
-	  "128": "resources/bc-logo-128.png",
-	  "48": "resources/bc-logo-48.png",
-	  "32": "resources/bc-logo-32.png",
-	  "16": "resources/bc-logo-16.png"
+	  "128": "resources/duplicat-128.png",
+	  "48": "resources/duplicat-48.png",
+	  "32": "resources/duplicat-32.png",
+	  "16": "resources/duplicat-16.png"
     },
 	//"content_scripts": [{
 	//	"matches": ["http://*/*", "https://*/*"],
@@ -22,7 +22,7 @@
 	//],
 	"browser_action" :{
 		"default_popup":"views/popup.html",
-		"default_icon":"resources/logo.png"
+		"default_icon":"resources/duplicat.png"
 	},
 	"permissions":["tabs", "http://*/*", "https://*/*"]
 }
