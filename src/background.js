@@ -1,5 +1,5 @@
 var windowDetached = false;
-
+var randomVinUrl = 'http://randomvin.com/getvin.php?fake=true';
 var BackgroundService = {
 
 	openWindow : function () {

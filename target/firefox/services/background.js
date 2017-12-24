@@ -7,9 +7,20 @@ var BackgroundService = {
 			return;
 		}
  		try {
- 			console.log("trying...");
- 			windowDetached = true;
- 			chrome.windows.create({'url':'../views/popup.html', 'type':'panel', 'height':450, 'width':280});
+			 console.log("trying..."); 
+			 
+			 var creating = browser.windows.create({
+				url: '../views/popup.html',
+				type: "popup",
+				height: 625,
+				width: 355
+			  });
+
+			  creating.then(function() {
+				windowDetached = true;
+			  }, function() {
+				  console.log('Failed to open in new window')
+			  });
  		} catch ( e ) {
  			console.log(e.message);
  		}		

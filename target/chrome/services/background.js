@@ -9,7 +9,7 @@ var BackgroundService = {
  		try {
  			console.log("trying...");
  			windowDetached = true;
- 			chrome.windows.create({'url':'../views/popup.html', 'type':'panel', 'height':450, 'width':280});
+ 			chrome.windows.create({'url':'../views/popup.html', 'type':'panel', 'height':550, 'width':355});
  		} catch ( e ) {
  			console.log(e.message);
  		}		
