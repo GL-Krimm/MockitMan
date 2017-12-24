@@ -1,10 +1,12 @@
 {
 	"manifest_version" : 2,
 	"name":"MockitMan",
+	"author": "Brandon McMullin",
 	"description":"Mocking tools for Web Developers.",
 	"version":"2.0.1",
 	"background": { 
-		"scripts":["services/background.js"]
+		"scripts":["services/background.js"],
+		"persistent":false
 	},
     "icons": {
 	  "128": "resources/duplicat-128.png",

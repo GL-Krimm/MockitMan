@@ -43,7 +43,7 @@ function ZipFiles($browser)
 	Compress-Archive -Path (".\target\" + $browser + "\manifest.json") -DestinationPath (".\target\" + $browser + "\mockitMan.zip") -Update
 }
 
-$browsers = ("chrome", "firefox")
+$browsers = ("chrome", "firefox", "edge")
 
 foreach ($browser in $browsers) {
 	switch ($action) {
