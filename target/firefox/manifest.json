@@ -1,7 +1,7 @@
 {
 	"manifest_version" : 2,
 	"name":"MockitMan",
-	"description":"Mocking tools for Swagger.",
+	"description":"Mocking tools for Web Developers.",
 	"version":"2.0.1",
 	"background": { 
 		"scripts":["services/background.js"]
@@ -19,5 +19,5 @@
 			"32":"resources/duplicat-32.png"
 		}
 	},
-	"permissions":["tabs", "http://*/*", "https://*/*"]
+	"permissions":["tabs", "http://*/*", "https://*/*", "clipboardRead", "clipboardWrite"]
 }

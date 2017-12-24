@@ -28,8 +28,7 @@ Function Build($browser) {
     Copy-Item (".\" + $browser + "\api.js") -destination (".\target\" + $browser + "\lib\api.js")
 	Copy-Item (".\" + $browser + "\background.js") -destination (".\target\" + $browser + "\services\background.js")
 
-
-    Copy-Item ".\manifest.json" -destination (".\target\" + $browser + "\manifest.json")
+    Copy-Item (".\" + $browser + "\manifest.json") -destination (".\target\" + $browser + "\manifest.json")
 
     ZipFiles($browser)
 }
@@ -37,7 +36,11 @@ Function Build($browser) {
 function ZipFiles($browser)
 {
 	Write-Output "Compressing package"
-	Compress-Archive -Path (".\target\" + $browser) -DestinationPath (".\target\" + $browser + "\mockitMan.zip") -Update
+	Compress-Archive -Path (".\target\" + $browser + "\lib") -DestinationPath (".\target\" + $browser + "\mockitMan.zip") -Update
+	Compress-Archive -Path (".\target\" + $browser + "\resources") -DestinationPath (".\target\" + $browser + "\mockitMan.zip") -Update
+	Compress-Archive -Path (".\target\" + $browser + "\services") -DestinationPath (".\target\" + $browser + "\mockitMan.zip") -Update
+	Compress-Archive -Path (".\target\" + $browser + "\views") -DestinationPath (".\target\" + $browser + "\mockitMan.zip") -Update
+	Compress-Archive -Path (".\target\" + $browser + "\manifest.json") -DestinationPath (".\target\" + $browser + "\mockitMan.zip") -Update
 }
 
 $browsers = ("chrome", "firefox")
