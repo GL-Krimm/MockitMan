@@ -8,7 +8,6 @@
 	var zId = "zipValue";
 	var amtId = "amtValue";
 	var vId = "vinValue";
-	var gBtnId = "btnGenerate";
 	var oBtnId = "btnOut";
 	var dateId = "dateValue";
 	var formatField = document.getElementById("formatField");
@@ -80,11 +79,49 @@
 		}
 	}
 
+	var handleNav = function() {
+		console.log('getting page ref')
+		var targetRef = this.getAttribute('data-page-ref');
+
+		console.log(targetRef);
+		var panels = document.getElementsByClassName('panel');
+
+		for (var i = 0; i < panels.length; i++) {
+			var panel = panels[i];
+			panel.style.visibility='hidden';
+		}
+
+		var navs = document.getElementsByClassName('nav');
+
+		for (var i = 0; i < navs.length; ++i) {
+			navs[i].classList.remove('active');
+		}
+
+		var targetPage = document.getElementById(targetRef);
+		targetPage.style.visibility='visible';
+		this.classList.add('active');
+	}
+
+	var initNav = function() {
+		console.log("building nav dynamically")
+		var navBar = document.getElementById('nav');
+		var panels = document.getElementsByClassName('panel');
+
+		for (var i = 0; i < panels.length; ++i) {
+			console.log('adding button');
+			var panel = panels[i];
+			var navButton = document.createElement('li');
+			navButton.className = 'nav';
+			var id = panel.getAttribute('id');
+			navButton.setAttribute('data-page-ref', id);
+			navButton.textContent = id;
+			navButton.onclick = handleNav;
+			navBar.appendChild(navButton);
+		}
+	}
+
 	var init = function() {
 		generateNewData();
-
-		// var gBtn = document.getElementById(gBtnId);
-		// gBtn.onclick = generateNewData;
 
 		var oBtn = document.getElementById(oBtnId);
 		oBtn.onclick = function() {
@@ -96,6 +133,8 @@
 		}
 
 		copyTarget = document.getElementById('copyTarget');
+
+		initNav();
 		initClickHandlers();
 	}
 

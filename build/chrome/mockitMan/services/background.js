@@ -30,7 +30,7 @@ var BackgroundService = {
 		var hosts = [];
 		  chrome.storage.sync.get(['hosts'], function(result) {
 			console.log(result);
-			var val = result.hosts;
+			var val = result.key;
 			if (undefined != val && null != val) {
 				hosts = JSON.parse(val);
 			}

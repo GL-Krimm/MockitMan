@@ -20,8 +20,6 @@
 		}
 	},
 	"permissions":[
-		"clipboardRead", /* MOZ */
-		"clipboardWrite", /* MOZ */
 		"tabs", 
 		"http://*/*", 
 		"https://*/*",

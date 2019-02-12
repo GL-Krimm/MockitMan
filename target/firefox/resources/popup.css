@@ -20,7 +20,27 @@ div.property {
 	cursor: pointer;
 }
 
+div#hosts {
+	display: none;
+}
+
 input#copyTarget {
 	position: fixed;
 	top: 10000px;
+}
+
+ul {
+	list-style-type: none;
+}
+
+ul#nav li {
+	display: inline-block;
+	cursor: pointer;
+	padding-left: 1em;
+	padding-right: 1em;
+	outline: .5em;
+}
+
+.active {
+	background-color: #43791F;
 }
