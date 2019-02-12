@@ -7,6 +7,32 @@ Function Clean($browser) {
 	Remove-Item -Force -Recurse (".\target\" + $browser) 
 }
 
+Function MozManifest() {
+	Get-Content .\manifest.json | Where-Object {$_ -notmatch 'EDGE'} | Set-Content ".\target\firefox\manifest.json"
+}
+
+Function ChromeManifest() {
+	Get-Content .\manifest.json | Where-Object {$_ -notmatch 'EDGE'} | Where-Object {$_ -notmatch 'MOZ'} | Set-Content ".\target\chrome\manifest.json"
+}
+
+Function EdgeManifest() {
+	Get-Content .\manifest.json | Where-Object {$_ -notmatch 'MOZ'} | Set-Content ".\target\edge\manifest.json"
+}
+
+Function Manifest($browser) {
+	switch ($browser) {
+		'chrome' {
+			ChromeManifest;
+		}
+		'firefox' {
+			MozManifest;
+		}
+		'edge' {
+			EdgeManifest;
+		}
+	}
+}
+
 Function Build($browser) {
 	Clean($browser);
 
@@ -25,10 +51,13 @@ Function Build($browser) {
     Write-Output "Creating services directory"
     New-Item -ItemType Directory -Force -Path (".\target\" + $browser + "\services")
 
-    Copy-Item (".\" + $browser + "\api.js") -destination (".\target\" + $browser + "\lib\api.js")
+	Copy-Item (".\" + $browser + "\api.js") -destination (".\target\" + $browser + "\lib\api.js")
+	Copy-Item (".\" + $browser + "\content.js") -destination (".\target\" + $browser + "\lib\content.js")
 	Copy-Item (".\" + $browser + "\background.js") -destination (".\target\" + $browser + "\services\background.js")
 
-    Copy-Item (".\" + $browser + "\manifest.json") -destination (".\target\" + $browser + "\manifest.json")
+	Manifest($browser)
+
+    #Copy-Item (".\" + $browser + "\manifest.json") -destination (".\target\" + $browser + "\manifest.json")
 
     ZipFiles($browser)
 }

@@ -1,9 +1,11 @@
 {
 	"manifest_version" : 2,
 	"name":"MockitMan",
+	"author": "Brandon McMullin", /* EDGE */
 	"description":"Mocking tools for Web Developers.",
 	"version":"2.0.1",
 	"background": { 
+		"persistent":true, /* EDGE */
 		"scripts":["services/background.js"]
 	},
     "icons": {
@@ -19,5 +21,17 @@
 			"32":"resources/duplicat-32.png"
 		}
 	},
-	"permissions":["tabs", "http://*/*", "https://*/*", "clipboardRead", "clipboardWrite"]
+	"permissions":[
+		"clipboardRead", /* MOZ */
+		"clipboardWrite", /* MOZ */
+		"tabs", 
+		"http://*/*", 
+		"https://*/*"
+	],
+	"content_scripts": [
+		{
+		  "matches": ["http://*.tlcinternal.com/*"],
+		  "js": ["lib/content.js"]
+		}
+	]
 }
