@@ -37,7 +37,8 @@ Function Build($browser) {
 	Clean($browser);
 
 	Write-Output "Creating target dir for browser: " + $browser
-    New-Item -ItemType Directory -Force -Path (".\target\" + $browser)
+	New-Item -ItemType Directory -Force -Path (".\target\" + $browser)
+	New-Item -ItemType Directory -Force -Path (".\build\" + $browser)
 
     Write-Output "Redeploying resources folder..."
 	robocopy  .\resources  (".\target\" + $browser + "\resources")
@@ -52,7 +53,7 @@ Function Build($browser) {
     New-Item -ItemType Directory -Force -Path (".\target\" + $browser + "\services")
 
 	Copy-Item (".\" + $browser + "\api.js") -destination (".\target\" + $browser + "\lib\api.js")
-	Copy-Item (".\" + $browser + "\content.js") -destination (".\target\" + $browser + "\lib\content.js")
+	Copy-Item (".\lib\content.js") -destination (".\target\" + $browser + "\lib\content.js")
 	Copy-Item (".\" + $browser + "\background.js") -destination (".\target\" + $browser + "\services\background.js")
 
 	Manifest($browser)
@@ -65,11 +66,11 @@ Function Build($browser) {
 function ZipFiles($browser)
 {
 	Write-Output "Compressing package"
-	Compress-Archive -Path (".\target\" + $browser + "\lib") -DestinationPath (".\target\" + $browser + "\mockitMan.zip") -Update
-	Compress-Archive -Path (".\target\" + $browser + "\resources") -DestinationPath (".\target\" + $browser + "\mockitMan.zip") -Update
-	Compress-Archive -Path (".\target\" + $browser + "\services") -DestinationPath (".\target\" + $browser + "\mockitMan.zip") -Update
-	Compress-Archive -Path (".\target\" + $browser + "\views") -DestinationPath (".\target\" + $browser + "\mockitMan.zip") -Update
-	Compress-Archive -Path (".\target\" + $browser + "\manifest.json") -DestinationPath (".\target\" + $browser + "\mockitMan.zip") -Update
+	Compress-Archive -Path (".\target\" + $browser + "\lib") -DestinationPath (".\build\" + $browser + "\mockitMan.zip") -Update
+	Compress-Archive -Path (".\target\" + $browser + "\resources") -DestinationPath (".\build\" + $browser + "\mockitMan.zip") -Update
+	Compress-Archive -Path (".\target\" + $browser + "\services") -DestinationPath (".\build\" + $browser + "\mockitMan.zip") -Update
+	Compress-Archive -Path (".\target\" + $browser + "\views") -DestinationPath (".\build\" + $browser + "\mockitMan.zip") -Update
+	Compress-Archive -Path (".\target\" + $browser + "\manifest.json") -DestinationPath (".\build\" + $browser + "\mockitMan.zip") -Update
 }
 
 $browsers = ("chrome", "firefox", "edge")

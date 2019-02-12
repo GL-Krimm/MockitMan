@@ -2,7 +2,7 @@
 	"manifest_version" : 2,
 	"name":"MockitMan",
 	"description":"Mocking tools for Web Developers.",
-	"version":"2.0.2",
+	"version":"2.0.1",
 	"background": { 
 		"scripts":["services/background.js"]
 	},
@@ -25,5 +25,11 @@
 		"tabs", 
 		"http://*/*", 
 		"https://*/*"
+	],
+	"content_scripts": [
+		{
+		  "matches": ["http://*.tlcinternal.com/*"],
+		  "js": ["lib/content.js"]
+		}
 	]
 }
